@@ -10,10 +10,17 @@ public class Main {
         Human human2 = new Human("俺", 23);
         human2.print();
 
-        Car car = new Car();
+        Engine engine = new Engine(4);
+        Tire[] tires = new Tire[4];
+        for(int i = 0; i < tires.length; i++){
+            tires[i] = new Tire(65);
+        }
+
+        Car car = new Car(tires, engine);
         GasStation gas = new GasStation();
         car.run();
         gas.refuel(car);
+        car.startEngine();
         car.run();
     }
 }
