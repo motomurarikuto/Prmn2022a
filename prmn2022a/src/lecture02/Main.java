@@ -10,6 +10,10 @@ public class Main {
         Human human2 = new Human("俺", 23);
         human2.print();
 
-
+        Car car = new Car();
+        GasStation gas = new GasStation();
+        car.run();
+        gas.refuel(car);
+        car.run();
     }
 }
