@@ -9,5 +9,6 @@ public class Exercise3_1 {
         System.out.println("”" + str + " ”と入力されました");
 
 
+
     }
 }
