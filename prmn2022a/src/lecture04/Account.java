@@ -6,6 +6,7 @@ public class Account {
     private long balance;
 
     public Account(String name, String number){
+        this.balance = 0;
 
     }
 
