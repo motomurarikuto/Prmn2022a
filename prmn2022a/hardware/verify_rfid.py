@@ -11,7 +11,7 @@ GPIO.setwarnings(False) #On désactive les messages d'alerte
 
 LED_RED = 3 #Définit le numéro du port GPIO qui alimente la led rouge
 LED_GREEN = 5 #Définit le numéro du port GPIO qui alimente la led verte
-RFID_UID = [21, 35, 5, 43, 57] #Définit l'UID du badge RFID
+RFID_UID = [122,106,75,50,105] #Définit l'UID du badge RFID
 
 #Définit la fonction permettant d'allumer une led
 def turn_led_on (led) :
@@ -36,7 +36,7 @@ def turn_green_on () :
 
 rc522 = RFID() #On instancie la lib
 
-print('En attente d'un badge (pour quitter, Ctrl + c): ') #On affiche un message demandant à l'utilisateur de passer son badge
+print("En attente d'un badge (pour quitter, Ctrl + c): ") #On affiche un message demandant à l'utilisateur de passer son badge
 
 #On va faire une boucle infinie pour lire en boucle
 while True :
