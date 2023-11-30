@@ -58,7 +58,7 @@ while True :
         # 学生証が読み取れたときの処理
         if not error : 
             if RFID_UID_ryoga == uid :
-                Count_ryoga++
+                Count_ryoga += 1
                 if Count_ryoga % 2 == 1 :
                    turn_green_on()
                    print('りょうがが入室されました')
@@ -67,7 +67,7 @@ while True :
                    print('りょうがが退出されました')
                     
             else if RFID_UID_rikuto == uid :
-                Count_rikuto++
+                Count_rikuto += 1
                 if Count_rikuto % 2 == 1 :
                    turn_green_on()
                    print('りくとが入室されました')
@@ -76,7 +76,7 @@ while True :
                    print('りくとが退出されました')
             
             else if RFID_UID_yuya == uid :
-                Count_yuya++
+                Count_yuya += 1
                 if Count_yuya % 2 == 1 :
                    turn_green_on()
                    print('ゆうやが入室されました')
@@ -85,7 +85,7 @@ while True :
                    print('ゆうやが退出されました')
                     
             else if RFID_UID_kyosuke == uid :
-                Count_kyosuke++
+                Count_kyosuke += 1
                 if Count_kyosuke % 2 == 1 :
                    turn_green_on()
                    print('きょうすけが入室されました')
