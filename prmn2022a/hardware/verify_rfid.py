@@ -16,6 +16,8 @@ RFID_UID_rikuto = [86,185,74,236,73]
 RFID_UID_kyosuke = [214,238,68,157,225]
 RFID_UID_yuya = [148,25,186,2,53]
 
+Count_ryoga = 0;
+
 #Définit la fonction permettant d'allumer une led
 def turn_led_on (led) :
     GPIO.setup(led, GPIO.OUT) #Active le contrôle du GPIO
@@ -50,9 +52,20 @@ while True :
         (error, uid) = rc522.anticoll() #On nettoie les possibles collisions, ça arrive si plusieurs cartes passent en même temps
 
         if not error : #Si on a réussi à nettoyer
-            if RFID_UID == uid :
+            if RFID_UID_ryoga == uid :
                 print('Badge {} autorisé !'.format(uid))
                 turn_green_on()
+                count_ryoga = 0
+            else if RFID_UID_rikuto == uid :
+                print('Badge {} autorisé !'.format(uid))
+                turn_green_on()
+            else if RFID_UID_yuya == uid :
+                print('Badge {} autorisé !'.format(uid))
+                turn_green_on()
+            else if RFID_UID_kyosuke == uid :
+                print('Badge {} autorisé !'.format(uid))
+                turn_green_on()
+            
             else :
                 print('Badge {} interdit !'.format(uid))
                 turn_red_on()
