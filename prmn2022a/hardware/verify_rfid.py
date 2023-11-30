@@ -40,11 +40,13 @@ def turn_led_off (led) :
     GPIO.setup(led, GPIO.OUT) 
     GPIO.output(led, GPIO.LOW) 
 
-
+# りょうがのLED
+# 退出のLED
 def turn_red1_on () :
     turn_led_off(LED_GREEN) 
     turn_led_on(LED_RED1) 
-    
+
+# 入室のLED
 def turn_green_on () :
     turn_led_off(LED_RED1) 
     turn_led_on(LED_GREEN)
