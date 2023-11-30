@@ -54,8 +54,10 @@ while True :
         if not error : #Si on a réussi à nettoyer
             if RFID_UID_ryoga == uid :
                 print('Badge {} autorisé !'.format(uid))
+                if Count_ryoga%2 == 1 :
                 turn_green_on()
-                count_ryoga = 0
+                else :
+                turn_red_on()
             else if RFID_UID_rikuto == uid :
                 print('Badge {} autorisé !'.format(uid))
                 turn_green_on()
