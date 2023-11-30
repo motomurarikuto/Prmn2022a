@@ -66,7 +66,7 @@ while True :
                    turn_red_on()
                    print('りょうがが退出されました')
                     
-            else if RFID_UID_rikuto == uid :
+            elif RFID_UID_rikuto == uid :
                 Count_rikuto += 1
                 if Count_rikuto % 2 == 1 :
                    turn_green_on()
@@ -75,7 +75,7 @@ while True :
                    turn_red_on()
                    print('りくとが退出されました')
             
-            else if RFID_UID_yuya == uid :
+            elif RFID_UID_yuya == uid :
                 Count_yuya += 1
                 if Count_yuya % 2 == 1 :
                    turn_green_on()
@@ -84,7 +84,7 @@ while True :
                    turn_red_on()
                    print('ゆうやが退出されました')
                     
-            else if RFID_UID_kyosuke == uid :
+            elif RFID_UID_kyosuke == uid :
                 Count_kyosuke += 1
                 if Count_kyosuke % 2 == 1 :
                    turn_green_on()
