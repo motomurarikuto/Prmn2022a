@@ -1,37 +1,39 @@
 #!/usr/bin/env python3.5
 #-- coding: utf-8 --
 
-import RPi.GPIO as GPIO #Importe la bibliothèque pour contrôler les GPIOs
+import RPi.GPIO as GPIO 
 from pirc522 import RFID
 import time
 
 
-GPIO.setmode(GPIO.BOARD) #Définit le mode de numérotation (Board)
-GPIO.setwarnings(False) #On désactive les messages d'alerte
+GPIO.setmode(GPIO.BOARD) 
+GPIO.setwarnings(False) 
 
-LED_RED = 3 #Définit le numéro du port GPIO qui alimente la led rouge
-LED_GREEN = 5 #Définit le numéro du port GPIO qui alimente la led verte
-RFID_UID_ryoga = [122,106,75,50,105]#Définit l'UID du badge RFID
-RFID_UID_rikuto = [86,185,74,236,73]
-RFID_UID_kyosuke = [214,238,68,157,225]
-RFID_UID_yuya = [148,25,186,2,53]
+LED_RED = 3 
+LED_GREEN = 5 
 
-Count_ryoga = 0;
+RFID_UID_ryoga = [122,106,75,50,105] #りょうがの学生証の番号
+RFID_UID_rikuto = [86,185,74,236,73] #りくとの学生証の番号
+RFID_UID_kyosuke = [214,238,68,157,225] #きょうすけの学生証の番号
+RFID_UID_yuya = [148,25,186,2,53] #ゆうやの学生証の番号
 
-#Définit la fonction permettant d'allumer une led
+Count_ryoga = 0
+Count_rikuto = 0
+Count_kyosuke = 0
+Count_yuya = 0
+
 def turn_led_on (led) :
-    GPIO.setup(led, GPIO.OUT) #Active le contrôle du GPIO
-    GPIO.output(led, GPIO.HIGH) #Allume la led
+    GPIO.setup(led, GPIO.OUT) 
+    GPIO.output(led, GPIO.HIGH) 
 
-#Définit la fonction permettant d'éteindre une led
 def turn_led_off (led) :
-    GPIO.setup(led, GPIO.OUT) #Active le contrôle du GPIO
-    GPIO.output(led, GPIO.LOW) #Eteind la led
+    GPIO.setup(led, GPIO.OUT) 
+    GPIO.output(led, GPIO.LOW) 
 
-#Définit la fonction permettant d'allumer la rouge et éteindre la verte
+
 def turn_red_on () :
-    turn_led_off(LED_GREEN) #Eteind la led verte
-    turn_led_on(LED_RED) #Allume la led rouge
+    turn_led_off(LED_GREEN) 
+    turn_led_on(LED_RED) 
 
 #Définit la fonction permettant d'allumer la verte et éteindre la rouge
 def turn_green_on () :
