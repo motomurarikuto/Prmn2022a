@@ -17,8 +17,8 @@ ID_name = {'ID':[[122,106,75,50,105],[86,185,74,236,73],[148,25,186,2,53]],
 CHANNEL   = 1      # i2c割り当てチャンネル 1 or 0
 ICADDR    = 0x20   # スレーブ側ICアドレス
 REG_IODIR_A = 0x00   # 入出力設定レジスタA
-REG_OLAT_A  = 0x14   # 出力レジスタB
-REG_IODIR_B = 0x01   # 入出力設定レジスタA
+REG_OLAT_A  = 0x14   # 出力レジスタA
+REG_IODIR_B = 0x01   # 入出力設定レジスタB
 REG_OLAT_B  = 0x15   # 出力レジスタB
 
 bus = smbus.SMBus(CHANNEL)
@@ -49,14 +49,12 @@ while True:
             
             for index, row in result.iterrows():
                 if row['Count'] % 2 == 1:
-
                   bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
-                    turn_led_off(row['Exist_pin']) 
-                    turn_led_on(row['Enter_pin'])
+                  bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
                     print(row['Name'] + 'が入室されました')
                 else:
-                    turn_led_off(row['Enter_pin']) 
-                    turn_led_on(row['Exist_pin'])
+                  bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
+                  bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
                     print(row['Name'] + 'が退出されました')
 
                 time.sleep(1)
