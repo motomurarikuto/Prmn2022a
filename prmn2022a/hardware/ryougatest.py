@@ -34,30 +34,26 @@ rc522 = RFID() # RFIDで読み取りの開始
 
 print("学生証をかざしてください") 
 
-while True :
+while True:
     rc522.wait_for_tag() 
     (error, tag_type) = rc522.request() 
 
-    if not error : 
+    if not error:
         (error, uid) = rc522.anticoll() 
 
-        # 学生証が読み取れたときの処理
-        if not error : 
-          #読み取ったuidが表にあるかどうかを見る
-          result = id_name[id_name['ID'].apply(lambda x: set(uid).issubset(set(x)))]
-          
-          # 条件にマッチした行の 'Count' 列を '1' に更新
-          id_name.loc[id_name['ID'].apply(lambda x: set(uid).issubset(set(x))), 'Count']+= 1
-          
-          for index, row in result.iterrows():
-            if row['Count'] % 2 == 1:
-              turn_led_off(result['Exit_pin']) 
-              turn_led_on(result['Enter_pin'])
-              print(result['Name']+'が入室されました')
-            else:
-              turn_led_off(result['Enter_pin']) 
-              turn_led_on(result['Exit_pin'])
-              print(result['Name']+'が退出されました')
-          
+        if not error: 
+            result = id_name[id_name['ID'].apply(lambda x: set(uid).issubset(set(x)))]
 
-            time.sleep(1) 
+            id_name.loc[id_name['ID'].apply(lambda x: set(uid).issubset(set(x))), 'Count'] += 1
+            
+            for index, row in result.iterrows():
+                if row['Count'] % 2 == 1:
+                    turn_led_off(row['Exist_pin']) 
+                    turn_led_on(row['Enter_pin'])
+                    print(row['Name'] + 'が入室されました')
+                else:
+                    turn_led_off(row['Enter_pin']) 
+                    turn_led_on(row['Exist_pin'])
+                    print(row['Name'] + 'が退出されました')
+
+                time.sleep(1)
