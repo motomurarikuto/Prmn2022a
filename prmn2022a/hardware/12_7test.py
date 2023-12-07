@@ -5,6 +5,7 @@ from pirc522 import RFID
 import time
 from pandas import DataFrame
 
+pinSum = 0
 
 ID_name = {'ID':[[122,106,75,50,105],[86,185,74,236,73],[148,25,186,2,53]],
           'Name':['涼雅','陸斗','勇哉'],
@@ -54,7 +55,8 @@ while True:
             
             for index, row in result.iterrows():
                 if row['Count'] % 2 == 1:
-                  bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
+                  pinSum += id_name['Enter_pin']
+                  bus.write_byte_data(ICADDR, REG_IODIR, pinSum)
                   bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
                     print(row['Name'] + 'が入室されました')
                 else:
