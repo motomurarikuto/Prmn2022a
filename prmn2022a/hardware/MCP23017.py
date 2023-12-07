@@ -1,7 +1,7 @@
 import smbus
 import time
 
-CHANNEL   = 0      # i2c割り当てチャンネル 1 or 0
+CHANNEL   = 1      # i2c割り当てチャンネル 1 or 0
 ICADDR    = 0x20   # スレーブ側ICアドレス
 REG_IODIR = 0x00   # 入出力設定レジスタ
 REG_OLAT  = 0x14   # 出力レジスタ
