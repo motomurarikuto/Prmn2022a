@@ -3,8 +3,8 @@ import time
 
 CHANNEL   = 1      # i2c割り当てチャンネル 1 or 0
 ICADDR    = 0x20   # スレーブ側ICアドレス
-REG_IODIR = 0x00   # 入出力設定レジスタ
-REG_OLAT  = 0x14   # 出力レジスタ
+REG_IODIR = 0x01   # 入出力設定レジスタ
+REG_OLAT  = 0x15   # 出力レジスタ
 
 bus = smbus.SMBus(CHANNEL)
 
