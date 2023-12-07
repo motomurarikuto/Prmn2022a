@@ -8,7 +8,7 @@ from pandas import DataFrame
 
 ID_name = {'ID':[[122,106,75,50,105],[86,185,74,236,73],[148,25,186,2,53]],
           'Name':['涼雅','陸斗','勇哉'],
-          'Enter_pin':[5,13,33],
+          'Enter_pin':[0x08,0x28,0xA8],
            'Exist_pin':[3,11,31],
            'Count':[0,0,0]
           }
@@ -22,6 +22,11 @@ REG_IODIR_B = 0x01   # 入出力設定レジスタB
 REG_OLAT_B  = 0x15   # 出力レジスタB
 
 bus = smbus.SMBus(CHANNEL)
+
+
+
+GPIO.setmode(GPIO.BOARD) 
+GPIO.setwarnings(False) 
 
 id_name = DataFrame(ID_name)
 
@@ -65,17 +70,10 @@ while True:
 
 
 
-# ピンの入出力設定
-
-
-# GPA3, GPA5, GPA7 出力オン
-bus.write_byte_data(ICADDR, REG_OLAT, 0x28)
-time.sleep(5)
-# GPA3, GPA5, GPA7 出力オフ
-bus.write_byte_data(ICADDR, REG_OLAT, 0x00)
 
 
 
 
-GPIO.setmode(GPIO.BOARD) 
-GPIO.setwarnings(False) 
+
+
+
