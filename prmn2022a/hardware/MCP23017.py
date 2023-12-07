@@ -12,7 +12,7 @@ bus = smbus.SMBus(CHANNEL)
 bus.write_byte_data(ICADDR, REG_IODIR, 0x00)
 
 # GPA3, GPA5, GPA7 出力オン
-bus.write_byte_data(ICADDR, REG_OLAT, 0xA3)
+bus.write_byte_data(ICADDR, REG_OLAT, 0x28)
 time.sleep(5)
 # GPA3, GPA5, GPA7 出力オフ
 bus.write_byte_data(ICADDR, REG_OLAT, 0x00)
