@@ -32,7 +32,12 @@ def turn_led_off (led) :
 
 rc522 = RFID() # RFIDで読み取りの開始
 
+for pin in id_name['Exist_pin']:
+    turn_led_on(pin)
+          
 print("学生証をかざしてください") 
+
+
 
 while True:
     rc522.wait_for_tag() 
