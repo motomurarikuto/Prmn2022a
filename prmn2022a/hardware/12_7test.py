@@ -5,7 +5,7 @@ from pirc522 import RFID
 import time
 from pandas import DataFrame
 
-pinSum = 0x00 // エンターピンを足した値を代入
+pinSum = 0x00 # エンターピンを足した値を代入
 
 ID_name = {'ID':[[122,106,75,50,105],[86,185,74,236,73],[148,25,186,2,53]],
           'Name':['涼雅','陸斗','勇哉'],
