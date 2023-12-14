@@ -5,7 +5,8 @@ from pirc522 import RFID
 import time
 from pandas import DataFrame
 
-pinSum = 0x00 # エンターピンを足した値を代入
+pinSum_A = 0x00 #入力ピンの合計
+pinSum_B = 0xFF #退出ピンの合計
 
 ID_name = {'ID':[[122,106,75,50,105],[86,185,74,236,73],[148,25,186,2,53]],
           'Name':['涼雅','陸斗','勇哉'],
@@ -22,6 +23,9 @@ REG_OLAT_A  = 0x14   # 出力レジスタA
 REG_IODIR_B = 0x01   # 入出力設定レジスタB
 REG_OLAT_B  = 0x15   # 出力レジスタB
 
+bus.write_byte_data(ICADDR, REG_IODIR_A, 0x00)
+bus.write_byte_data(ICADDR, REG_IODIR_B, 0x00)
+
 bus = smbus.SMBus(CHANNEL)
 
 GPIO.setmode(GPIO.BOARD) 
@@ -31,8 +35,7 @@ id_name = DataFrame(ID_name)
 
 rc522 = RFID() # RFIDで読み取りの開始
 
-for pin in id_name['Exist_pin']:
-    turn_led_on(pin)
+bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B)
           
 print("学生証をかざしてください") 
 
@@ -50,10 +53,13 @@ while True:
             
             for index, row in result.iterrows():
                 if row['Count'] % 2 == 0:
-                  pinSum += id_name['Enter_pin']
-                  bus.write_byte_data(ICADDR, REG_IODIR, pinSum)
+                  pinSum_A += id_name['Enter_pin']
+                  bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A)
+                  bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B - id_name['Enter_pin'])
                   print(row['Name'] + 'が入室されました')
                 else:
-                  bus.write_byte_data(ICADDR, REG_IODIR, pinSum - id_name['Enter_pin'])
+                  pinSum_B += id_name['Enter_pin']
+                  bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A - id_name['Enter_pin'])
+                  bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B)
                   print(row['Name'] + 'が退出されました')
                 time.sleep(1)
