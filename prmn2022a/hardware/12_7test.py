@@ -22,10 +22,10 @@ REG_OLAT_A  = 0x14   # 出力レジスタA
 REG_IODIR_B = 0x01   # 入出力設定レジスタB
 REG_OLAT_B  = 0x15   # 出力レジスタB
 
+bus = smbus.SMBus(CHANNEL) # チャネルの初期化
+
 bus.write_byte_data(ICADDR, REG_IODIR_A, 0x00) # 入出力レジスタAの初期化
 bus.write_byte_data(ICADDR, REG_IODIR_B, 0x00) # 入出力レジスタBの初期化
-
-bus = smbus.SMBus(CHANNEL) # チャネルの初期化
 
 GPIO.setmode(GPIO.BOARD) # ラズパイのデジタルピンの初期化
 GPIO.setwarnings(False) 
