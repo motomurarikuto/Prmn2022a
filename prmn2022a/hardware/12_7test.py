@@ -52,15 +52,15 @@ while True:
             
             for index, row in result.iterrows():
                 if row['Count'] % 2 == 0: # 入室の処理
-                  pinSum_A += id_name['Enter_pin'] # 入室ピンを足していく
-                  pinSum_B -= id_name['Enter_pin'] # 退出ピンを引いていく
-                  bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
-                  bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
-                  print(row['Name'] + 'が入室されました')
+          　　　　pinSum_A += enter_pin # 入室ピンを足していく
+        　　　　　pinSum_B -= enter_pin # 退出ピンを引いていく
+        　　　　　bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
+        　　　　　bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
+        　　　　　print(row['Name'] + 'が入室されました')
                 else:
-                  pinSum_A -= id_name['Enter_pin'] # 入室ピンを引いていく
-                  pinSum_B += id_name['Enter_pin'] # 退出ピンを足していく
-                  bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
-                  bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
-                  print(row['Name'] + 'が退出されました')
+                 pinSum_A -= enter_pin # 入室ピンを引いていく
+        　　　　　pinSum_B += enter_pin # 退出ピンを足していく
+              　　bus.write_byte_data(ICADDR, REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
+        　　　　　bus.write_byte_data(ICADDR, REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
+        　　　　　print(row['Name'] + 'が退出されました')
                 time.sleep(1)
