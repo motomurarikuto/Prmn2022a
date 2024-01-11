@@ -16,7 +16,10 @@ ID_name = {'ID':[ [122,106,75,50,105], [86,185,74,236,73], [148,25,186,2,53], [2
 
 #設定
 CHANNEL   = 1      # i2c割り当てチャンネル 1 or 0
-ICADDR    = 0x20   # スレーブ側ICアドレス
+ICADDR_1 = 0x20   # スレーブ側ICアドレス
+ICADDR_2 = 0x21
+ICADDR_3 = 0x22
+ICADDR_4 = 0x23
 REG_IODIR_A = 0x00   # 入出力設定レジスタA
 REG_OLAT_A  = 0x14   # 出力レジスタA
 REG_IODIR_B = 0x01   # 入出力設定レジスタB
