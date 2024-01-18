@@ -51,7 +51,7 @@ bus.write_byte_data(0x22, REG_OLAT_A, pinSum_A_22) # 退出ピン(B)を全部光
 bus.write_byte_data(0x23, REG_OLAT_A, pinSum_A_23) # 退出ピン(B)を全部光らせる
 
 bus.write_byte_data(0x21, REG_OLAT_B, pinSum_B_21) # 退出ピン(B)を全部光らせる
-bus.write_byte_data(0x22, REG_OLAT_B, pinSum_B22) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x22, REG_OLAT_B, pinSum_B_22) # 退出ピン(B)を全部光らせる
 bus.write_byte_data(0x23, REG_OLAT_B, pinSum_B_23) # 退出ピン(B)を全部光らせる
           
 print("学生証をかざしてください") 
