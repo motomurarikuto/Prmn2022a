@@ -11,8 +11,8 @@ pinSum_B_21 = 0xFF #退出ピンの合計
 pinSum_A_22 = 0x00 #入力ピンの合計
 pinSum_B_22 = 0xFF #退出ピンの合計
 
-pinSum_A_22 = 0x00 #入力ピンの合計
-pinSum_B_22 = 0xFF #退出ピンの合計
+pinSum_A_23 = 0x00 #入力ピンの合計
+pinSum_B_23 = 0xFF #退出ピンの合計
 
 
 ID_name = {'ID':[ [122,106,75,50,105], [86,185,74,236,73], [148,25,186,2,53], [214,238,68,157,225],[132,49,166,2,17],[230,175,84,236,241] ],
@@ -46,9 +46,13 @@ GPIO.setwarnings(False)
 
 rc522 = RFID() # RFIDで読み取りの開始
 
-bus.write_byte_data(0x21, REG_OLAT_B, pinSum_B) # 退出ピン(B)を全部光らせる
-bus.write_byte_data(0x22, REG_OLAT_B, pinSum_B) # 退出ピン(B)を全部光らせる
-bus.write_byte_data(0x23, REG_OLAT_B, pinSum_B) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x21, REG_OLAT_A, pinSum_A_21) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x22, REG_OLAT_A, pinSum_A_22) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x23, REG_OLAT_A, pinSum_A_23) # 退出ピン(B)を全部光らせる
+
+bus.write_byte_data(0x21, REG_OLAT_B, pinSum_B_21) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x22, REG_OLAT_B, pinSum_B22) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(0x23, REG_OLAT_B, pinSum_B_23) # 退出ピン(B)を全部光らせる
           
 print("学生証をかざしてください") 
 
