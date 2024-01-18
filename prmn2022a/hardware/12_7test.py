@@ -15,6 +15,8 @@ ID_name = {'ID':[ [122,106,75,50,105], [86,185,74,236,73], [148,25,186,2,53], [2
            'ICADDR':[0x21,0x22,0x23,0x21,0x22,0x23]
           }
 
+id_name = DataFrame(ID_name)# ID_nameをデータフレームに変換
+
 #設定
 CHANNEL   = 1      # i2c割り当てチャンネル 1 or 0
 REG_IODIR_A = 0x00   # 入出力設定レジスタA
@@ -24,17 +26,20 @@ REG_OLAT_B  = 0x15   # 出力レジスタB
 
 bus = smbus.SMBus(CHANNEL) # チャネルの初期化
 
-bus.write_byte_data(id_name['IDADDR'], REG_IODIR_A, 0x00) # 入出力レジスタAの初期化
-bus.write_byte_data(id_name['IDADDR'], REG_IODIR_B, 0x00) # 入出力レジスタBの初期化
+
+row_index = 4 #取得したい行のインデックス
+row_data = df.iloc[row_index]
+
+bus.write_byte_data(row_data['ICADDR'], REG_IODIR_A, 0x00) # 入出力レジスタAの初期化
+bus.write_byte_data(row_data['ICADDR'], REG_IODIR_B, 0x00) # 入出力レジスタBの初期化
 
 GPIO.setmode(GPIO.BOARD) # ラズパイのデジタルピンの初期化
 GPIO.setwarnings(False) 
 
-id_name = DataFrame(ID_name) # ID_nameをデータフレームに変換
 
 rc522 = RFID() # RFIDで読み取りの開始
 
-bus.write_byte_data(id_name['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピン(B)を全部光らせる
+bus.write_byte_data(row_data['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピン(B)を全部光らせる
           
 print("学生証をかざしてください") 
 
@@ -55,13 +60,13 @@ while True:
                 if row['Count'] % 2 == 0: # 入室の処理
                   pinSum_A += enter_pin # 入室ピンを足していく
                   pinSum_B -= enter_pin # 退出ピンを引いていく
-                  bus.write_byte_data(id_name['ICADDR'], REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
-                  bus.write_byte_data(id_name['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
+                  bus.write_byte_data(row_data['ICADDR'], REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
+                  bus.write_byte_data(row_data['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
                   print(row['Name'] + 'が入室されました')
                 else:
                   pinSum_A -= enter_pin # 入室ピンを引いてい
                   pinSum_B += enter_pin # 退出ピンを足していく
-                  bus.write_byte_data(id_name['ICADDR'], REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
-                  bus.write_byte_data(id_name['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
+                  bus.write_byte_data(row_data['ICADDR'], REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
+                  bus.write_byte_data(row_data['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
                   print(row['Name'] + 'が退出されました')
             time.sleep(1)
