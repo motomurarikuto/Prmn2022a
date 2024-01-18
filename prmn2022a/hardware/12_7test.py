@@ -59,8 +59,8 @@ while True:
                   bus.write_byte_data(id_name['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
                   print(row['Name'] + 'が入室されました')
                 else:
-                  pinSum_A -= enter_pin # 入室ピンを引いていく
-        　　 　　　pinSum_B += enter_pin # 退出ピンを足していく
+                  pinSum_A -= enter_pin # 入室ピンを引いてい
+                  pinSum_B += enter_pin # 退出ピンを足していく
                   bus.write_byte_data(id_name['ICADDR'], REG_OLAT_A, pinSum_A) # 入室ピンを光らせる
                   bus.write_byte_data(id_name['ICADDR'], REG_OLAT_B, pinSum_B) # 退出ピンを光らせる
                   print(row['Name'] + 'が退出されました')
